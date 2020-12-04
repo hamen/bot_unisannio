@@ -5,8 +5,8 @@ on:
       lat: 44.4667
       lon: 7.3524
       units: metric
-    # every: "0 7 * * *"
-    # timeZone: UTC
+    every: "0 7 * * *"
+    timeZone: UTC    
 jobs:
   print:
     name: Print
