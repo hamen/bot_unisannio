@@ -1,17 +1,15 @@
 on:
   rss:
-    url: https://hnrss.org/newest?points=300&count=3
+    url: https://ivanmorgillo.com/feed/
 jobs:
   print:
-    name: Print
+    name: Ivan's Blog
     runs-on: ubuntu-latest
     steps:
       - name: Print Outputs
         env:
-          title: ${{on.rss.outputs.title}}
-          contentSnippet: ${{on.rss.outputs.contentSnippet}}
+          title: ${{on.rss.outputs.title}}        
           link: ${{on.rss.outputs.link}}
         run: |
           echo title: $title
-          echo contentSnippet: $contentSnippet
           echo link: $link
