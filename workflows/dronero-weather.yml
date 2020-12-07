@@ -20,7 +20,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Meteo di oggi a Dronero: 
-              * Condizioni: ${{on.weather.outputs.current.weather[0].description}}
-              * Temperatura minima: ${{on.weather.outputs.daily[0].temp.min}}
-              * Temperatura massima: ${{on.weather.outputs.daily[0].temp.max}}
+            *Meteo di oggi a Dronero*: 
+              - Condizioni: ${{on.weather.outputs.current.weather[0].description}}
+              - Temperatura minima: ${{on.weather.outputs.daily[0].temp.min}}
+              - Temperatura massima: ${{on.weather.outputs.daily[0].temp.max}}         
+          format: markdown
