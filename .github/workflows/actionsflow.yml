@@ -3,7 +3,7 @@ on:
   repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron: "0/60 7 * * *"
+    - cron: "0/60 * * * *"
   push:
 jobs:
   run:
