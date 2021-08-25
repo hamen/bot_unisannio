@@ -1,4 +1,4 @@
-# Benvenuti il The Forgotted Sannio GLUG bot
+# Benvenuti al The Forgotted Sannio GLUG bot
 
 Il bot si basa su https://actionsflow.github.io/docs/.
 
