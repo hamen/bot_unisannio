@@ -1,4 +1,4 @@
-name: Meteo SMAV
+name: Meteo Sinalunga
 on:
   weather:
     apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
