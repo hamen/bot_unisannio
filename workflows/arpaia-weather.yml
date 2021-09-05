@@ -1,0 +1,27 @@
+name: Meteo SMAV
+on:
+  weather:
+    apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
+    params:
+      lat: 41.033333
+      lon: 14.483333
+      units: metric
+      lang: it
+    every: "0 7 * * *"
+    timeZone: UTC
+jobs:
+  notify:
+    name: Send notifications
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send a telegram message
+        uses: appleboy/telegram-action@v0.1.0
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            *Meteo di oggi a SMAV*: 
+              - Condizioni: ${{on.weather.outputs.current.weather[0].description}}
+              - Temperatura minima: ${{on.weather.outputs.daily[0].temp.min}}
+              - Temperatura massima: ${{on.weather.outputs.daily[0].temp.max}}         
+          format: markdown
