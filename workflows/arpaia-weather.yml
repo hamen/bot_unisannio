@@ -7,7 +7,7 @@ on:
       lon: 14.48333
       units: metric
       lang: it
-    every: "0 7 * * *"
+    every: "20 11 * * *"
     timeZone: UTC
 jobs:
   notify:
