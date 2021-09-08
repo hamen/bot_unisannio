@@ -1,4 +1,4 @@
-name: Meteo SMAV
+name: Meteo Arpaia
 on:
   weather:
     apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
@@ -20,7 +20,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            *Meteo di oggi a SMAV*: 
+            *Meteo di oggi ad Arpaia(BN)*: 
               - Condizioni: ${{on.weather.outputs.current.weather[0].description}}
               - Temperatura minima: ${{on.weather.outputs.daily[0].temp.min}}
               - Temperatura massima: ${{on.weather.outputs.daily[0].temp.max}}         
