@@ -1,4 +1,4 @@
-name: Meteo ASiena
+name: Meteo Ant_Siena
 on:
   weather:
     apiKey: ${{ secrets.OPENWEATHERMAP_API_KEY }}
