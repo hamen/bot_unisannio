@@ -23,6 +23,5 @@ jobs:
             *Meteo di oggi a Sinalunga*: 
               - Condizioni: ${{on.weather.outputs.current.weather[0].description}}
               - Temperatura minima: ${{on.weather.outputs.daily[0].temp.min}}
-              - Temperatura massima: ${{on.weather.outputs.daily[0].temp.max}}         
-              - Umidita: ${{on.weather.outputs.daily[0].humidity}}         
+              - Temperatura massima: ${{on.weather.outputs.daily[0].temp.max}}        
           format: markdown
