@@ -24,4 +24,5 @@ jobs:
               - Condizioni: ${{on.weather.outputs.current.weather[0].description}}
               - Temperatura minima: ${{on.weather.outputs.daily[0].temp.min}}
               - Temperatura massima: ${{on.weather.outputs.daily[0].temp.max}}
+            - Umidità: ${{on.weather.outputs.daily[0].humidity}}%
           format: markdown
