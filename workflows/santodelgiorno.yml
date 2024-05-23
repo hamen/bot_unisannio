@@ -12,7 +12,7 @@ jobs:
         uses: Kaven-Universe/github-action-current-date-time@v1
         with:
           format: "yyyy-MM-dd"
-      if: ${{on.rss.outputs.title.startsWith(steps.todaysDate)}}
+     if: ${{on.rss.outputs.title.startsWith(steps.todaysDate)}}
         - name: Send a Telegram message
           uses: appleboy/telegram-action@master
           with:
