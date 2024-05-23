@@ -1,6 +1,7 @@
 on:
   rss:
-    url: http://feeds.feedburner.com/Acor3-SantoDelGiorno
+    url: https://liturgia.silvestrini.org/rss.santi.xml
+    #url: http://feeds.feedburner.com/Acor3-SantoDelGiorno
 jobs:
   beam:
     name: Beam to Telegram
