@@ -1,25 +1,17 @@
 on:
   rss:
-    url: https://liturgia.silvestrini.org/rss.santi.xml
-    #url: http://feeds.feedburner.com/Acor3-SantoDelGiorno
+    url: http://feeds.feedburner.com/Acor3-SantoDelGiorno
 jobs:
   beam:
     name: Beam to Telegram
     runs-on: ubuntu-latest
     steps:
-      - name: getTodaysDate
-        id: todaysDate
-        uses: Kaven-Universe/github-action-current-date-time@v1
-        with:
-          format: "yyyy-MM-dd"
       - name: Send a Telegram message
         uses: appleboy/telegram-action@master
         with:
          to: ${{ secrets.TELEGRAM_TO }}
          token: ${{ secrets.TELEGRAM_TOKEN }}
          message: |
-          Oggi si bestemmia:
-          if: ${{on.rss.outputs.title.startsWith(steps.todaysDate}}
-            Oggi si bestemmia:
-            ${{on.rss.outputs.title}}
-            format: html
+           Oggi si bestemmia:
+           ${{on.rss.outputs.title}}
+           format: html
