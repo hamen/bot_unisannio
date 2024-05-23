@@ -21,18 +21,13 @@ jobs:
       - name: Install dependencies
         run: npm install axios xml2js date-fns
 
-      - name: Get today's date and time
-        id: todaysDateTime
-        run: |
-          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          echo "hour=$(TZ=Europe/Rome date +'%H')" >> $GITHUB_ENV
-
       - name: Fetch RSS and Check Title
         id: checkTitle
         run: |
           const axios = require('axios');
           const xml2js = require('xml2js');
           const { format } = require('date-fns');
+
           const RSS_URL = 'https://liturgia.silvestrini.org/rss.santi.xml';
 
           async function fetchRSS() {
@@ -43,17 +38,17 @@ jobs:
               parser.parseString(rssData, (err, result) => {
                 if (err) {
                   console.error('Error parsing XML:', err);
-                  return;
+                  process.exit(1);
                 }
 
                 const items = result.rss.channel[0].item;
-                const today = process.env.date;
-                const currentHour = process.env.hour;
+                const today = format(new Date(), 'yyyy-MM-dd');
+                const currentHour = new Date().getUTCHours() + 1; // Convert UTC to CET/CEST
 
                 // Check if the current hour is 09:00 in Italy
-                if (currentHour !== '09') {
+                if (currentHour !== 11) {
                   console.log('::set-output name=message::Not the correct hour for sending the message');
-                  return;
+                  process.exit(0);
                 }
 
                 const todayItems = items.filter(item => {
@@ -70,6 +65,7 @@ jobs:
               });
             } catch (error) {
               console.error('Error fetching RSS feed:', error);
+              process.exit(1);
             }
           }
 
