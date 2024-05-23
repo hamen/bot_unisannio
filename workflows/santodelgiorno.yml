@@ -7,12 +7,18 @@ jobs:
     name: Beam to Telegram
     runs-on: ubuntu-latest
     steps:
-      - name: Send a Telegram message
-        uses: appleboy/telegram-action@master
+      - name: getTodaysDate
+        id: todaysDate
+        uses: Kaven-Universe/github-action-current-date-time@v1
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            Oggi si bestemmia:  
-            ${{on.rss.outputs.title}}            
-          format: html
+          format: "yyyy-MM-dd"
+      if: ${{on.rss.outputs.title.startsWith(steps.todaysDate)}}
+        - name: Send a Telegram message
+          uses: appleboy/telegram-action@master
+          with:
+            to: ${{ secrets.TELEGRAM_TO }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
+            message: |
+              Oggi si bestemmia:
+              ${{on.rss.outputs.title}}            
+            format: html
