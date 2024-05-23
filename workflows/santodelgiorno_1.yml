@@ -44,9 +44,10 @@ jobs:
                 const items = result.rss.channel[0].item;
                 const today = format(new Date(), 'yyyy-MM-dd');
                 const currentHour = new Date().getUTCHours() + 1; // Convert UTC to CET/CEST
+                const currentMinute = new Date().getUTCMinutes();
 
-                // Check if the current hour is 10:00 in Italy
-                if (currentHour !== 12) {
+                // Check if the current hour is 11:25 in Italy
+                if (currentHour !== 11 && currentMinute !== 25) {
                   console.log('::set-output name=message::Not the correct hour for sending the message');
                   process.exit(0);
                 }
