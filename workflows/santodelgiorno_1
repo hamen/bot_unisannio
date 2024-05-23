@@ -78,8 +78,12 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: ${{ steps.checkTitle.outputs.message }}
+          message: Oggi si bestemmia: ${{ steps.checkTitle.outputs.message }}
 
       - name: Log no match message
         if: steps.checkTitle.outputs.message == 'dio'
-        run: echo "No matching titles found. Message: dio"
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Oggi si bestemmia: ${{ dio }}
