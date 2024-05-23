@@ -45,7 +45,7 @@ jobs:
                 const today = format(new Date(), 'yyyy-MM-dd');
                 const currentHour = new Date().getUTCHours() + 1; // Convert UTC to CET/CEST
 
-                // Check if the current hour is 09:00 in Italy
+                // Check if the current hour is 10:00 in Italy
                 if (currentHour !== 10) {
                   console.log('::set-output name=message::Not the correct hour for sending the message');
                   process.exit(0);
@@ -78,7 +78,10 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Oggi si bestemmia: ${{ steps.checkTitle.outputs.message }}
+          message: |
+            Oggi si bestemmia:
+            ${{ steps.checkTitle.outputs.message }}
+          format: html
 
       - name: Log no match message
         if: steps.checkTitle.outputs.message == 'dio'
@@ -86,4 +89,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Oggi si bestemmia: ${{ dio }}
+          message: |
+            Oggi si bestemmia:
+            dio
+          format: html
