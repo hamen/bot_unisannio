@@ -4,22 +4,17 @@ on:
     config:
       limit: 5
 jobs:
-  print:
-    name: Print
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Outputs
-        env:
-          santo: ${{ on.poll.outputs.nome_santo }}
   beam:
     name: Beam to Telegram
     runs-on: ubuntu-latest
     steps:
       - name: Send a Telegram message
+        env:
+          nome_santo: ${{ on.poll.outputs.nome_santo }}
         uses: appleboy/telegram-action@master
         with:
          to: ${{ secrets.TELEGRAM_TO }}
          token: ${{ secrets.TELEGRAM_TOKEN }}
          message: |         
-           Oggi si bestemmia: $santo
+           Oggi si bestemmia: ${{ nome_santo }}
          format: html
