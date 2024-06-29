@@ -1,7 +1,16 @@
 on:
-  rss:
-    url: http://feeds.feedburner.com/Acor3-SantoDelGiorno
+  poll:
+    url: https://the-forgotten-sannio-glug-bot.fly.dev/santo
+    config:
+      limit: 5
 jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Outputs
+        env:
+          santo: ${{ on.poll.outputs.nome_santo }}
   beam:
     name: Beam to Telegram
     runs-on: ubuntu-latest
@@ -12,5 +21,5 @@ jobs:
          to: ${{ secrets.TELEGRAM_TO }}
          token: ${{ secrets.TELEGRAM_TOKEN }}
          message: |         
-           Oggi si bestemmia: Dio (finché Aurelio non usa Gippy)
+           Oggi si bestemmia: $santo
          format: html
